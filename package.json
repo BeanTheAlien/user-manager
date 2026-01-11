@@ -1,0 +1,26 @@
+{
+  "name": "user-manager",
+  "version": "0.0.0",
+  "description": "A simple user management API for PostgreSQL databases.",
+  "main": "main.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BeanTheAlien/user-manager.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/BeanTheAlien/user-manager/issues"
+  },
+  "homepage": "https://github.com/BeanTheAlien/user-manager#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "jsonwebtoken": "^9.0.3",
+    "pg": "^8.16.3"
+  }
+}
