@@ -28,6 +28,7 @@ class Users implements UserOptions {
         this.hash = opts.hash || hash;
         this.compare = opts.compare || compare;
         this.db = opts.db;
+        this.#query("create table if not exists users", []);
     }
     async #query(cmd: string, args: string[]): Promise<any> {
         return this.db.query(cmd, args);
@@ -40,6 +41,9 @@ class Users implements UserOptions {
      */
     async has(field: string, val: string): Promise<boolean> {
         return (await this.#query("select * from users where $1 = $2", [field, val])).rows > 0;
+    }
+    async reset() {
+        await this.#query("drop table if exists users", []);
     }
     /**
      * Adds a new user to the database.
