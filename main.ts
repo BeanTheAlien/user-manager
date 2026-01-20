@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 
 interface UField {
     name: string;
-    def: any;
+    def?: any | null;
     type: "text" | "json";
 }
 interface UserOptions {
@@ -43,10 +43,12 @@ class Users implements UserOptions {
     }
     /**
      * Adds a new user to the database.
-     * @param info - The user's information.
-     * @returns {Promise<undefined>} Does not return anything.
+     * @param data - The user's information.
+     * @returns {Promise<void>} Does not return anything.
      */
-    async add(info: UInfo): Promise<undefined> {
-        await this.#query("insert into users ($1) values ($2)", ["null"]);
+    async add(data: Object): Promise<void> {
+        const queryFields: string[] = Object.keys(data);
+        const queryArgs: string[] = Object.values(data);
+        await this.#query("insert into users ($1) values ($2)", [...queryFields, ...queryArgs]);
     }
 }
